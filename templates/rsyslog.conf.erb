@@ -1,0 +1,6 @@
+$DefaultNetstreamDriverCAFile /etc/papertrail.crt
+$ActionSendStreamDriver gtls
+$ActionSendStreamDriverMode 1
+$ActionSendStreamDriverAuthMode x509/name
+
+*.*	@@<%= log_host %>:<%= log_port %>
