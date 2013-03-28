@@ -8,7 +8,7 @@ Sets up `rsyslog` to send logs to papertrail over TLS. Also sets up `remote_sysl
 
 With librarian-puppet, add the following to your Puppetfile:
 
-	mod 'postfix',
+	mod 'papertrail',
 		:git => 'git://github.com/davidwinter/puppet-papertrail.git'
 
 Then run `librarian-puppet install`.
