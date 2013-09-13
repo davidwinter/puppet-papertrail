@@ -1,8 +1,8 @@
 files: 
-<% extra_logs.each do |log_file| -%>
+<% @extra_logs.each do |log_file| -%>
   - <%= log_file %>
 <% end -%>
 ssl_server_cert: /etc/papertrail.crt
 destination:
-  host: <%= log_host %>
-  port: <%= log_port %>
+  host: <%= @log_host %>
+  port: <%= @log_port %>
