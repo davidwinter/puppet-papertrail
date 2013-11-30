@@ -44,6 +44,10 @@ class papertrail (
     ensure => present,
   }
 
+  package { 'ruby-dev':
+    ensure => present,
+  }
+
   package { 'remote_syslog':
     ensure   => present,
     provider => 'gem',
