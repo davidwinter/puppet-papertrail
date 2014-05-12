@@ -32,21 +32,7 @@ class papertrail (
     notify => Service['rsyslog'],
   }
 
-  package { 'gcc':
-    ensure => present,
-  }
-
-  package { 'rubygems':
-    ensure => present,
-  }
-
-  package { 'libssl-dev':
-    ensure => present,
-  }
-
-  package { 'ruby-dev':
-    ensure => present,
-  }
+  ensure_packages(['gcc', 'rubygems', 'libssl-dev', 'ruby-dev'])
 
   package { 'remote_syslog':
     ensure   => present,
