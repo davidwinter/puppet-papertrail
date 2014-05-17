@@ -32,21 +32,7 @@ class papertrail (
     notify => Service['rsyslog'],
   }
 
-  package { 'gcc':
-    ensure => present,
-  }
-
-  package { 'rubygems':
-    ensure => present,
-  }
-
-  package { 'libssl-dev':
-    ensure => present,
-  }
-
-  package { 'ruby-dev':
-    ensure => present,
-  }
+  ensure_packages(['gcc', 'rubygems', 'libssl-dev', 'ruby-dev'])
 
   package { 'remote_syslog':
     ensure   => present,
@@ -65,13 +51,13 @@ class papertrail (
   }
 
   $remote_syslog_status = empty($extra_logs) ? {
-    true => stopped,
-    false  => running
+    true  => stopped,
+    false => running
   }
 
   $remote_syslog_file = empty($extra_logs) ? {
-    true => absent,
-    false  => file
+    true  => absent,
+    false => file
   }
 
   file { 'remote_syslog config':
