@@ -32,16 +32,19 @@ class papertrail (
     notify => Service['rsyslog'],
   }
 
-  ensure_packages(['gcc', 'rubygems', 'libssl-dev', 'ruby-dev'])
+  if $::osfamily == 'Debian' and $::operatingsystemrelease == '12.04' {
+    $deps = ['build-essential','rubygems', 'libssl-dev', 'ruby-dev']
+  }
+  else {
+    $deps = ['build-essential','libssl-dev', 'ruby-dev']
+  }
+
+  ensure_packages($deps)
 
   package { 'remote_syslog':
     ensure   => present,
     provider => 'gem',
-    require  => [
-      Package['rubygems'],
-      Package['gcc'],
-      Package['libssl-dev'],
-    ],
+    require  => Package[$deps],
   }
 
   file { 'remote_syslog upstart script':
